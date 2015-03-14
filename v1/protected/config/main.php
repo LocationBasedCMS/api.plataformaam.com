@@ -120,7 +120,7 @@ return array(
                     
                     
                     'req.auth.user'=>function() {
-                        return true;
+                        //return true;
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
                               return true;
@@ -143,7 +143,7 @@ return array(
                           return false;
                     },
                     'req.auth.ajax.user' => function(){
-                        return true;
+                        //return true;
                         $requsetHeader = getallheaders ();
                           if(isset($requsetHeader['HTTP_X_REST_USERNAME']) and isset($requsetHeader['HTTP_X_REST_PASSWORD'])) {
                           //if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
