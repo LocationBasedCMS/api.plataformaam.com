@@ -1,0 +1,1 @@
+ALTER TABLE `UserPosition` ADD CONSTRAINT `UserPosition_ibfk_5` FOREIGN KEY (`user`) REFERENCES `db_central`.`User`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
