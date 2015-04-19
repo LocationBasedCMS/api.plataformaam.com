@@ -79,9 +79,6 @@ class UserController extends GxController {
 		));
 	}
         
-        public function onRestEvent(){
-          
-        }
-        
+
     
 }
