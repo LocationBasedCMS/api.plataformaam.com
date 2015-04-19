@@ -3,14 +3,14 @@
 //NEcessário setar o Header - Procurando o local correto.
 //@header('Access-Control-Allow-Origin: *'); 
 //@header('Access-Control-Allow-Headers: HTTP_X_REST_CORS,X-Requested-With,Content-Type,HTTP_X_REST_USERNAME,HTTP_X_REST_PASSWORD');
-//exit( json_encode( headers_list() ));
+
 
 
 
 
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../../yii/framework/yii.php';
+$yii=dirname(__FILE__).'/../../yii/framework/yii.php';  
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following lines when in production mode
