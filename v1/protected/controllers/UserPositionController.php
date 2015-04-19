@@ -72,5 +72,20 @@ class UserPositionController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        public function restEvents()
+        {  
+        
+            
+            $this->onRest('model.sort', function() {
+                return isset($_GET['sort'])? $_GET['sort']: '[{"property":"currentTime","direction":"DESC"}]';
+            });
+
+            $this->onRest('model.limit', function() {
+                return 100;
+            }); 
+            
+           
+        }        
 
 }

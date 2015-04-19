@@ -79,9 +79,14 @@ abstract class BaseUserPosition extends GxActiveRecord {
 		$criteria->compare('content', $this->content, true);
 		$criteria->compare('latitude', $this->latitude);
 		$criteria->compare('longitude', $this->longitude);
-
+                
+                $criteria->order('currentTime DESC');
+                
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,
+                    
 		));
 	}
+        
+
 }

@@ -1,6 +1,4 @@
-
 <?php
-
 
 
 // uncomment the following to define a path alias
@@ -85,7 +83,8 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=db_central',
 			'emulatePrepare' => true,
 			'username' => 'root',
-                    	'password' => 'ERROR',
+			//'password' => 'amadis',
+                    	'password' => 'pl4tAM@db4LBS',
 			'charset' => 'utf8',
 		),
 		
@@ -117,10 +116,8 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
                 
                 'RestfullYii' => [
-                    
-                    
                     'req.auth.user'=>function() {
-                        //return true;
+                        return true;
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
                               return true;
@@ -143,13 +140,17 @@ return array(
                           return false;
                     },
                     'req.auth.ajax.user' => function(){
-                        //return true;
-                        $requsetHeader = getallheaders ();
-                          if(isset($requsetHeader['HTTP_X_REST_USERNAME']) and isset($requsetHeader['HTTP_X_REST_PASSWORD'])) {
+                        
+                        $requestHeader = getallheaders ();
+                        //exit( json_encode( $requestHeader ));
+                        return true;
+                        
+                          if(isset($requestHeader['HTTP_X_REST_USERNAME']) and isset($requestHeader['HTTP_X_REST_PASSWORD'])) {
                           //if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
-                              $username = trim($requsetHeader['HTTP_X_REST_USERNAME']);
-                              $password = trim($requsetHeader['HTTP_X_REST_PASSWORD']);
+                              
+                              $username = trim($requestHeader['HTTP_X_REST_USERNAME']);
+                              $password = trim($requestHeader['HTTP_X_REST_PASSWORD']);
                               Yii::log(" LOG: Tentando Logar $username // $password ");
                               Yii::trace(" TRACE: Tentando Logar $username // $password ");                              
                               

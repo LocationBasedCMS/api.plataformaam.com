@@ -29,7 +29,7 @@ class Controller extends CController
                     'accessControl', // perform access control for CRUD operations
                     array(
                         'ext.starship.restfullyii.filters.ERestFilter + 
-                        REST.GET, REST.PUT, REST.POST, REST.DELETE'
+                        REST.GET, REST.PUT, REST.POST, REST.DELETE, REST.OPTIONS'
                     ),
                 );
         }
@@ -48,9 +48,8 @@ class Controller extends CController
             $this->onRest('model.hidden.properties', function() {
                 return ['password','user0.password','user.password'];
             });
-
             
-            //TODO 
+            //TO-DO
             //Definir usuários com acesso aos métodos REST
             //This assumes you have created these roles (REST-GET, REST-PUT, REST-POST, REST-DELETE):
             $this->onRest('req.auth.uri', function($uri, $verb) {
@@ -69,11 +68,34 @@ class Controller extends CController
                     case 'DELETE':
                         return Yii::app()->user->checkAccess('REST-DELETE');
                         break;
+                    case 'OPTIONS':
+                        return Yii::app()->user->checkAccess('REST-OPTIONS');
+                        break;                    
                     default:
                         return false;
                         break;
                     }
                 });
+                
+
+            $this->onRest('req.cors.access.control.allow.origin', function() {
+                return ["http://painelpedagogico.plataformaam.com"]; //List of sites allowed to make CORS requests 
+            });
+            
+            $this->onRest('req.cors.access.control.allow.headers', function() {
+                return [
+                    'Origin, Access-Control-Request-Method, X_REST_CORS,X-Requested-With,Content-Type,HTTP_X_REST_USERNAME,HTTP_X_REST_PASSWORD,http_x_rest_username, 
+    http_x_rest_password, usexdomain, x_rest_cors, accept'
+                ];
+            });            
+            
+            $this->onRest('req.cors.access.control.allow.methods', function() {
+                return ['GET', 'POST', 'PUT', 'DELETE','OPTIONS']; //List of allowed http methods (verbs) 
+            });            
+            
+            $this->onRest('config.application_id', function() {
+                 return 'REST';
+            });
         }
 
         public function accessRules()
