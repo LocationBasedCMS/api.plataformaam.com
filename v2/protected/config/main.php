@@ -126,7 +126,10 @@ return array(
                 
                 'RestfullYii' => [
                     'req.auth.user'=>function() {
-
+                            echo json_encode($_SERVER);
+                            exit();
+            
+            
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
                               return true;
@@ -150,8 +153,7 @@ return array(
                     },
                     'req.auth.ajax.user' => function(){
                         
-                        
-                        
+                         $requestHeader = getallheaders ();
                           if(isset($requestHeader['HTTP_X_REST_USERNAME']) and isset($requestHeader['HTTP_X_REST_PASSWORD'])) {
                           //if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
