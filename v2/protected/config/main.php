@@ -12,6 +12,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+    
         'aliases' => array(
             'RestfullYii' =>realpath(__DIR__ . '/../extensions/starship/restfullyii'),
         ),    
@@ -50,6 +51,19 @@ return array(
 
 	// application components
 	'components'=>array(
+                'log'=>array(
+                    'class'=>'CLogRouter',
+                    'routes'=>array(
+                        array(
+                            'class'=>'CFileLogRoute',
+                            'levels'=>'trace, info, error, warning',
+                            'categories'=>'system.*',
+                        ),
+                    ),
+                ),            
+            
+            
+            
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -112,7 +126,7 @@ return array(
                 
                 'RestfullYii' => [
                     'req.auth.user'=>function() {
-                        //return true;
+
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
                               return true;
@@ -136,9 +150,7 @@ return array(
                     },
                     'req.auth.ajax.user' => function(){
                         
-                        $requestHeader = getallheaders ();
-                        //exit( json_encode( $requestHeader ));
-                       //return true;
+                        
                         
                           if(isset($requestHeader['HTTP_X_REST_USERNAME']) and isset($requestHeader['HTTP_X_REST_PASSWORD'])) {
                           //if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
@@ -146,8 +158,8 @@ return array(
                               
                               $username = trim($requestHeader['HTTP_X_REST_USERNAME']);
                               $password = trim($requestHeader['HTTP_X_REST_PASSWORD']);
-                              Yii::log(" LOG: Tentando Logar $username // $password ");
-                              Yii::trace(" TRACE: Tentando Logar $username // $password ");                              
+                              //Yii::log(" LOG: Tentando Logar $username // $password ");
+                              //Yii::trace(" TRACE: Tentando Logar $username // $password ");                              
                               
                               $identity=new UserIdentity($username,$password);
                               if($identity->authenticate()){
@@ -157,9 +169,9 @@ return array(
                               else{
                                   return false;
                               }
-                          }
-                          return false;
-                      },                           
+                        }
+                        return false;
+                    },
                             
                 ]
                 
