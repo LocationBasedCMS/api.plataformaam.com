@@ -34,15 +34,16 @@ return array(
 			'ipFilters'=>array('127.0.0.1','192.168.100.101','::1'),
                     
 		),
-                */
-                'gii' => array(
+                           'gii' => array(
                     'class' => 'system.gii.GiiModule',
                     'generatorPaths' => array(
                             'ext.giix-core', // giix generators
                     ),
                     'password'=>'123456',
                     'ipFilters'=>array('127.0.0.1','192.168.*','192.168.1.105','192.168.25.*','::1'),
-        	),
+        	), 
+                */
+      
 		
 	),
 
@@ -117,15 +118,13 @@ return array(
                 
                 'RestfullYii' => [
                     'req.auth.user'=>function() {
-                        return true;
+                            exit(0);
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
-                              return true;
+                              
                               $username = trim($_SERVER['HTTP_X_REST_USERNAME']);
                               $password = trim($_SERVER['HTTP_X_REST_PASSWORD']);
-                              Yii::log(" LOG: Tentando Logar $username // $password ");
-                              Yii::trace(" TRACE: Tentando Logar $username // $password ");
-                              return true;
+                              
 
                               $identity=new UserIdentity($username,$password);
                               

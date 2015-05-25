@@ -33,9 +33,8 @@ abstract class BaseImage extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('id, url', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>1000),
+			array('url', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('id, url', 'safe', 'on'=>'search'),
 		);
 	}

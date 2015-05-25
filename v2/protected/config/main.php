@@ -126,10 +126,7 @@ return array(
                 
                 'RestfullYii' => [
                     'req.auth.user'=>function() {
-                            echo json_encode($_SERVER);
-                            exit();
-            
-            
+                                        
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
                               return true;

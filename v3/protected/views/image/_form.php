@@ -14,11 +14,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 		<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model, 'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
-		</div><!-- row -->
-		<div class="row">
 		<?php echo $form->labelEx($model,'url'); ?>
 		<?php echo $form->textField($model, 'url', array('maxlength' => 1000)); ?>
 		<?php echo $form->error($model,'url'); ?>
