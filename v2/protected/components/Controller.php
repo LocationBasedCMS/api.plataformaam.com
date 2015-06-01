@@ -71,7 +71,7 @@ class Controller extends CController
             $this->onRest('req.cors.access.control.allow.headers', function($application_id) {
                  return ["X_REST_CORS",'HTTP_X_REST_USERNAME','HTTP_X_REST_PASSWORD'];
             });
-            
+
        }
   
 }
