@@ -22,6 +22,18 @@ require_once  '/opt/api.plataformaam.com/upload.config.php';
 
 $time_reference = TIME_REFERENCE;
 //Adiciona novas posições 
+//Delete posições antigas
+$sql_delete_old_positions = "
+    DELETE
+    FROM `OnlineUser`
+    WHERE
+      `time` <= DATE_SUB(NOW(), INTERVAL $time_reference HOUR) OR 1=1
+";
+mysql_query($sql_delete_old_positions);
+$count_delete = mysql_affected_rows();
+
+
+
 $sql_insert_positions = "
     INSERT IGNORE INTO OnlineUser (
         user, 
