@@ -28,16 +28,16 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
-                
-                'gii' => array(
-                    'class' => 'system.gii.GiiModule',
-                    'generatorPaths' => array(
-                            'ext.giix-core', // giix generators
-                    ),
-                    'password'=>'123456',
-                    'ipFilters'=>array('*','127.0.0.1','192.168.*','192.168.1.105','192.168.25.*','::1'),
-        	),
-                 
+//                
+//                'gii' => array(
+//                    'class' => 'system.gii.GiiModule',
+//                    'generatorPaths' => array(
+//                            'ext.giix-core', // giix generators
+//                    ),
+//                    'password'=>'123456',
+//                    'ipFilters'=>array('*','127.0.0.1','192.168.*','192.168.1.105','192.168.25.*','::1'),
+//        	),
+//                 
                 
 		
 	),
@@ -119,10 +119,6 @@ return array(
                 
                 'RestfullYii' => [
                     'req.auth.user'=>function() {
-                            echo json_encode($_SERVER);
-                            exit();
-            
-            
                           if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
                               
 
@@ -145,6 +141,7 @@ return array(
                           return false;
                     },
                     'req.auth.ajax.user' => function(){
+                         
                          $requestHeader = getallheaders ();
                           if(isset($requestHeader['HTTP_X_REST_USERNAME']) and isset($requestHeader['HTTP_X_REST_PASSWORD'])) {
                           //if(isset($_SERVER['HTTP_X_REST_USERNAME']) and isset($_SERVER['HTTP_X_REST_PASSWORD'])) {
