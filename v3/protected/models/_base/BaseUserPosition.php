@@ -15,6 +15,9 @@
  * @property string $content
  * @property double $latitude
  * @property double $longitude
+ * @property integer $vcomcomposite
+ * @property integer $vcombase
+ * @property integer $upi
  *
  */
 abstract class BaseUserPosition extends GxActiveRecord {
@@ -38,11 +41,11 @@ abstract class BaseUserPosition extends GxActiveRecord {
 	public function rules() {
 		return array(
 			array('user, currentTime, latitude, longitude', 'required'),
-			array('user', 'numerical', 'integerOnly'=>true),
+			array('user, vcomcomposite, vcombase, upi', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
 			array('content', 'safe'),
-			array('content', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, user, currentTime, content, latitude, longitude', 'safe', 'on'=>'search'),
+			array('content, vcomcomposite, vcombase, upi', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, user, currentTime, content, latitude, longitude, vcomcomposite, vcombase, upi', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +67,9 @@ abstract class BaseUserPosition extends GxActiveRecord {
 			'content' => Yii::t('app', 'Content'),
 			'latitude' => Yii::t('app', 'Latitude'),
 			'longitude' => Yii::t('app', 'Longitude'),
+			'vcomcomposite' => Yii::t('app', 'Vcomcomposite'),
+			'vcombase' => Yii::t('app', 'Vcombase'),
+			'upi' => Yii::t('app', 'Upi'),
 		);
 	}
 
@@ -76,6 +82,9 @@ abstract class BaseUserPosition extends GxActiveRecord {
 		$criteria->compare('content', $this->content, true);
 		$criteria->compare('latitude', $this->latitude);
 		$criteria->compare('longitude', $this->longitude);
+		$criteria->compare('vcomcomposite', $this->vcomcomposite);
+		$criteria->compare('vcombase', $this->vcombase);
+		$criteria->compare('upi', $this->upi);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,
