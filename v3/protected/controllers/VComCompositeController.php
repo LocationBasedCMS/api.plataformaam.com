@@ -73,4 +73,6 @@ class VComCompositeController extends GxController {
 		));
 	}
 
+        
+     
 }
