@@ -60,6 +60,10 @@ class Controller extends CController
        
        public function  restEvents(){
            
+            $this->onRest('model.hidden.properties', function() {
+                return ['password','user0.password','user.password'];
+            });
+           
            $this->onRest('req.cors.access.control.allow.origin', function() {
                 return ['http://painelpedagogico.plataformaam.com']; //List of sites allowed to make CORS requests 
             });
